@@ -1,0 +1,37 @@
+<html>
+<body>
+<h2>Online Examination</h2>
+<input id="student" placeholder="Student Name">
+<button onclick="start()">Start Exam</button>
+
+<div id="exam" hidden>
+  <p>1. HTML stands for?</p>
+  <input type="radio" name="q1" value="1">Hyper Text Markup Language
+  <input type="radio" name="q1" value="0">High Text Machine Language
+
+  <p>2. Which is a version control tool?</p>
+  <input type="radio" name="q2" value="1">Git
+  <input type="radio" name="q2" value="0">Docker
+
+  <br><br>
+  <button onclick="submitExam()">Submit</button>
+</div>
+<h3 id="result"></h3>
+
+<script>
+function start() {
+  if(!student.value.trim())
+    return alert("Enter student name");
+  exam.hidden = false;
+}
+function submitExam() {
+  let score = 0;
+  for(let q of ['q1','q2']) {
+    let ans = document.querySelector(`input[name="${q}"]:checked`);
+    if(ans) score += Number(ans.value);
+  }
+  result.innerText = "Score: " + score + "/2";
+}
+</script>
+</body>
+</html>
